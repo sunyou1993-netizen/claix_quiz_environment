@@ -758,17 +758,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnGlobalBack) {
     btnGlobalBack.addEventListener('click', () => {
       sfx.playClick();
-      const overlay = document.querySelector('.result-overlay');
-      if (overlay) {
-        overlay.remove();
-        return;
-      }
-      if (state.currentIndex > 0) {
-        state.currentIndex--;
-        renderMainGameUI();
-      } else {
-        initGameSession();
-      }
+      window.location.href = 'https://claix-quiz-list-rl4x.vercel.app/';
     });
   }
 
