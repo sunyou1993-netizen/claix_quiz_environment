@@ -51,7 +51,38 @@ html, body {
   box-shadow: none;
 }
 
-/* Clean Header Area Container */
+/* Top-Left Global Circular Back Button */
+.kiosk-back-btn {
+  position: absolute;
+  top: 36px;
+  left: 36px;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2500;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.22);
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s ease;
+  padding: 0;
+}
+
+.kiosk-back-btn:active {
+  transform: scale(0.88);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+}
+
+.kiosk-back-btn svg {
+  width: 40px;
+  height: 40px;
+  stroke: #334155;
+  display: block;
+}
 
 /* Header Area Container */
 .kiosk-header {

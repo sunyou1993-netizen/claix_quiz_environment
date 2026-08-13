@@ -753,6 +753,25 @@ function showResultModal() {
 document.addEventListener('DOMContentLoaded', () => {
   setupAutoScaling();
 
+  // Top-Left Global Circular Back Button
+  const btnGlobalBack = document.getElementById('btn-global-back');
+  if (btnGlobalBack) {
+    btnGlobalBack.addEventListener('click', () => {
+      sfx.playClick();
+      const overlay = document.querySelector('.result-overlay');
+      if (overlay) {
+        overlay.remove();
+        return;
+      }
+      if (state.currentIndex > 0) {
+        state.currentIndex--;
+        renderMainGameUI();
+      } else {
+        initGameSession();
+      }
+    });
+  }
+
   // Header Back Button
   const btnBack = document.getElementById('btn-back');
   if (btnBack) {
