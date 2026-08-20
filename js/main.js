@@ -785,8 +785,11 @@ function showResultModal() {
         </div>
 
         <div style="display: flex; gap: 20px; width: 100%; margin-top: 20px;">
-          <button id="btn-modal-retry" class="ctrl-btn ctrl-btn-pri" style="height: 100px;">
+          <button id="btn-modal-retry" class="ctrl-btn ctrl-btn-sec" style="height: 100px; flex: 1;">
             <span>다시 풀어보기</span>
+          </button>
+          <button id="btn-modal-home" class="ctrl-btn ctrl-btn-pri" style="height: 100px; flex: 1;">
+            <span>홈으로 이동</span>
           </button>
         </div>
       </div>
@@ -805,6 +808,33 @@ function showResultModal() {
       initGameSession();
     });
   }
+
+  const homeBtn = document.getElementById('btn-modal-home');
+  if (homeBtn) {
+    homeBtn.addEventListener('click', () => {
+      sfx.playClick();
+      window.location.href = 'https://claix-quiz-list6-bp67.vercel.app/';
+    });
+  }
+}
+
+const HOME_URL = 'https://claix-quiz-list6-bp67.vercel.app/';
+
+function navigateToHome() {
+  try {
+    sfx.playClick();
+  } catch (e) {}
+
+  try {
+    if (window.top && window.top !== window) {
+      window.top.location.href = HOME_URL;
+      return;
+    }
+  } catch (e) {
+    // Cross-origin iframe fallback
+  }
+
+  window.location.href = HOME_URL;
 }
 
 // ==========================================
@@ -813,30 +843,48 @@ function showResultModal() {
 document.addEventListener('DOMContentLoaded', () => {
   setupAutoScaling();
 
-  // Top-Left Global Circular Back Button
+  // Handle browser / device back navigation
+  try {
+    history.pushState({ page: 'quiz' }, '', window.location.href);
+    window.addEventListener('popstate', () => {
+      navigateToHome();
+    });
+  } catch (e) {}
+
+  // Global Capturing Click Handler for all Back/Close/Home buttons
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('#btn-global-back, .kiosk-back-btn, #btn-back, #btn-close, #btn-modal-home');
+    if (target) {
+      e.preventDefault();
+      e.stopPropagation();
+      navigateToHome();
+    }
+  }, true);
+
+  // Top-Left Global Circular Back Button -> Goes to Quiz List Home
   const btnGlobalBack = document.getElementById('btn-global-back');
   if (btnGlobalBack) {
-    btnGlobalBack.addEventListener('click', () => {
-      sfx.playClick();
-      window.location.href = 'https://claix-quiz-list-rl4x.vercel.app/';
+    btnGlobalBack.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigateToHome();
     });
   }
 
   // Header Back Button
   const btnBack = document.getElementById('btn-back');
   if (btnBack) {
-    btnBack.addEventListener('click', () => {
-      sfx.playClick();
-      initGameSession();
+    btnBack.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigateToHome();
     });
   }
 
   // Header Home / Close Button
   const btnClose = document.getElementById('btn-close');
   if (btnClose) {
-    btnClose.addEventListener('click', () => {
-      sfx.playClick();
-      initGameSession();
+    btnClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigateToHome();
     });
   }
 
