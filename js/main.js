@@ -785,11 +785,8 @@ function showResultModal() {
         </div>
 
         <div style="display: flex; gap: 20px; width: 100%; margin-top: 20px;">
-          <button id="btn-modal-retry" class="ctrl-btn ctrl-btn-sec" style="height: 100px; flex: 1;">
+          <button id="btn-modal-retry" class="ctrl-btn ctrl-btn-pri" style="height: 100px;">
             <span>다시 풀어보기</span>
-          </button>
-          <button id="btn-modal-home" class="ctrl-btn ctrl-btn-pri" style="height: 100px; flex: 1;">
-            <span>홈으로 이동</span>
           </button>
         </div>
       </div>
@@ -808,14 +805,6 @@ function showResultModal() {
       initGameSession();
     });
   }
-
-  const homeBtn = document.getElementById('btn-modal-home');
-  if (homeBtn) {
-    homeBtn.addEventListener('click', () => {
-      sfx.playClick();
-      window.location.href = 'https://claix-quiz-list6-bp67.vercel.app/';
-    });
-  }
 }
 
 // ==========================================
@@ -824,12 +813,12 @@ function showResultModal() {
 document.addEventListener('DOMContentLoaded', () => {
   setupAutoScaling();
 
-  // Top-Left Global Circular Back Button -> Goes to Quiz List Home
+  // Top-Left Global Circular Back Button
   const btnGlobalBack = document.getElementById('btn-global-back');
   if (btnGlobalBack) {
     btnGlobalBack.addEventListener('click', () => {
       sfx.playClick();
-      window.location.href = 'https://claix-quiz-list6-bp67.vercel.app/';
+      window.location.href = 'https://claix-quiz-list-rl4x.vercel.app/';
     });
   }
 
@@ -838,7 +827,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnBack) {
     btnBack.addEventListener('click', () => {
       sfx.playClick();
-      window.location.href = 'https://claix-quiz-list6-bp67.vercel.app/';
+      initGameSession();
     });
   }
 
@@ -847,7 +836,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnClose) {
     btnClose.addEventListener('click', () => {
       sfx.playClick();
-      window.location.href = 'https://claix-quiz-list6-bp67.vercel.app/';
+      initGameSession();
     });
   }
 
