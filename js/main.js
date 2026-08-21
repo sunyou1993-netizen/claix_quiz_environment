@@ -784,12 +784,9 @@ function showResultModal() {
           친구들과 힘을 모아 푸른 지구를 지켜요! 🌱
         </div>
 
-        <div style="display: flex; gap: 20px; width: 100%; margin-top: 20px;">
-          <button id="btn-modal-retry" class="ctrl-btn ctrl-btn-sec" style="height: 100px; flex: 1;">
+        <div style="display: flex; width: 100%; margin-top: 20px;">
+          <button id="btn-modal-retry" class="ctrl-btn ctrl-btn-pri" style="height: 100px; width: 100%;">
             <span>다시 풀어보기</span>
-          </button>
-          <button id="btn-modal-home" class="ctrl-btn ctrl-btn-pri" style="height: 100px; flex: 1;">
-            <span>홈으로 이동</span>
           </button>
         </div>
       </div>
@@ -806,14 +803,6 @@ function showResultModal() {
       const overlay = document.querySelector('.result-overlay');
       if (overlay) overlay.remove();
       initGameSession();
-    });
-  }
-
-  const homeBtn = document.getElementById('btn-modal-home');
-  if (homeBtn) {
-    homeBtn.addEventListener('click', () => {
-      sfx.playClick();
-      window.location.href = 'https://claix-quiz-list6-bp67.vercel.app/';
     });
   }
 }
